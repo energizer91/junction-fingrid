@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Button, Divider, Text } from "@tremor/react";
 import { BadgeList } from "./BadgeList.tsx";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 interface ReleaseItemProps {
   release: Release;
 }
@@ -13,7 +15,7 @@ export const ReleaseItem = ({ release }: ReleaseItemProps) => {
     <div>
       <div className="flex flex-row justify-between items-start">
         <div className="mb-6">
-          <Link to={`/releases?releaseId=${release.id}`}>
+          <Link to={`${basePath}/releases?releaseId=${release.id}`}>
             <H2>{release.name}</H2>
           </Link>
           <BadgeList type={release.type} tags={release.tags} />

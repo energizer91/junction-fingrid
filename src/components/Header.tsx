@@ -4,18 +4,20 @@ import classnames from "classnames";
 import { UserArea } from "./UserArea.tsx";
 import johnDoe from "../assets/john-doe.png";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const navItems = [
-  { href: "/", title: "Dashboard" },
-  { href: "/features", title: "Feature requests" },
-  { href: "/releases", title: "Releases" },
-  { href: "/faq", title: "FAQ" },
+  { href: basePath + "/", title: "Dashboard" },
+  { href: basePath + "/features", title: "Feature requests" },
+  { href: basePath + "/releases", title: "Releases" },
+  { href: basePath + "/faq", title: "FAQ" },
 ];
 
 export const Header = () => {
   const { pathname } = useLocation();
   return (
     <header className="header flex justify-between items-center mb-10">
-      <Link to="/" className="flex flex-1">
+      <Link to={basePath + "/"} className="flex flex-1">
         <img src={fingridLogo} alt="Fingrid logo" />
       </Link>
       <nav className="flex flex-grow justify-center">

@@ -7,6 +7,8 @@ import { Badge } from "@tremor/react";
 import { Link } from "react-router-dom";
 import { getBadgeColor } from "../../utils.ts";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const features: Feature[] = [
   mockFeatureBulkPermissions,
   mockFeaturePreferenceAnalytics,
@@ -19,7 +21,7 @@ interface FeatureRequestProps {
 const FeatureRequest = ({ feature }: FeatureRequestProps) => {
   return (
     <Link
-      to={`/features/${feature.id}`}
+      to={`${basePath}/features/${feature.id}`}
       className="col-span-1 flex flex-col mb-3"
     >
       <div className="flex justify-between flex-row items-center">

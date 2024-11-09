@@ -3,13 +3,15 @@ import { Badge, Card } from "@tremor/react";
 import { Link } from "react-router-dom";
 import { getBadgeColor } from "../utils.ts";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 interface LinkedFeatureProps {
   feature: Feature;
 }
 
 export const LinkedFeature = ({ feature }: LinkedFeatureProps) => {
   return (
-    <Link to={`/features/${feature.id}`}>
+    <Link to={`${basePath}/features/${feature.id}`}>
       <Card
         key={feature.id}
         className="rounded-tremor-small bg-tremor-background-light p-4 flex flex-row justify-between"

@@ -17,6 +17,8 @@ import {
   mockFeatureReleaseTimeline,
 } from "../../mocks.ts";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 enum FILTERS {
   ALL,
   MY,
@@ -51,7 +53,7 @@ export const Features = () => {
   }, [selectedFeature]);
 
   const handleAddNewFeature = useCallback(() => {
-    navigate("/features");
+    navigate(basePath + "/features");
     if (filter === FILTERS.FEATURE_VIEW) {
       setFilter(FILTERS.ALL);
     }
@@ -60,7 +62,7 @@ export const Features = () => {
 
   const handleChangeFilter = useCallback(
     (newFilter: FILTERS) => () => {
-      navigate("/features");
+      navigate(basePath + "/features");
       setIsAddingNew(false);
       setFilter(newFilter);
     },

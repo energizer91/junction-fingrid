@@ -11,6 +11,8 @@ import { RiDownloadLine } from "@remixicon/react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const releases: Release[] = [
   mockRelease24,
   mockRelease23,
@@ -47,7 +49,7 @@ interface UpdateProps {
 
 const Update = ({ release, relevant }: UpdateProps) => {
   return (
-    <Link to={`/releases/?releaseId=${release.id}`}>
+    <Link to={`${basePath}/releases/?releaseId=${release.id}`}>
       <Card
         className={classnames(
           "flex flex-row justify-between px-6 py-3 rounded-tremor-small overflow-y-auto",

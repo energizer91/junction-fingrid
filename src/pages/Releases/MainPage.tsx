@@ -13,6 +13,8 @@ import { ReleaseViewPage } from "./ReleaseViewPage.tsx";
 import { ReleasesList } from "./ReleasesList.tsx";
 import { Link, useSearchParams } from "react-router-dom";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const releases: Release[] = [
   mockRelease24,
   mockRelease23,
@@ -45,7 +47,7 @@ export const Releases = () => {
             </li>
             {releases.map((r: Release) => (
               <li key={r.id} className="font-bold">
-                <Link to={`/releases?releaseId=${r.id}`}>
+                <Link to={`${basePath}/releases?releaseId=${r.id}`}>
                   <Button
                     variant="light"
                     className={classnames(

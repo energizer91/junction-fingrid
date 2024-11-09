@@ -10,6 +10,8 @@ import { Badge, Card, Text } from "@tremor/react";
 import { Link } from "react-router-dom";
 import { getBadgeColor } from "../../utils.ts";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const features: Feature[] = [
   mockFeatureBulkPermissions,
   mockFeatureEnhancementTracking,
@@ -24,7 +26,7 @@ interface RequestCardProps {
 
 const RequestCard = ({ feature }: RequestCardProps) => {
   return (
-    <Link className="col-span-1" to={`/features/${feature.id}`}>
+    <Link className="col-span-1" to={`${basePath}/features/${feature.id}`}>
       <Card className="rounded-tremor-small">
         <div className="flex flex-col mb-3">
           <div className="flex justify-between flex-row items-center">

@@ -6,21 +6,23 @@ import { Dashboard } from "./pages/Dashboard/MainPage.tsx";
 import { Features } from "./pages/Features/MainPage.tsx";
 import { Releases } from "./pages/Releases/MainPage.tsx";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: basePath + "/",
     element: <Dashboard />,
   },
   {
-    path: "/features",
+    path: basePath + "/features",
     element: <Features />,
   },
   {
-    path: "/features/:featureId",
+    path: basePath + "/features/:featureId",
     element: <Features />,
   },
   {
-    path: "/releases",
+    path: basePath + "/releases",
     element: <Releases />,
   },
 ]);

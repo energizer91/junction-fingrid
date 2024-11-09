@@ -17,6 +17,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import "./FeaturesTable.css";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 export interface FeaturesTableProps {
   features: Feature[];
 }
@@ -37,7 +39,7 @@ export const FeaturesTable = ({ features }: FeaturesTableProps) => {
         {features.map((feature) => (
           <TableRow
             key={feature.id}
-            onClick={() => navigate(`/features/${feature.id}`)}
+            onClick={() => navigate(`${basePath}/features/${feature.id}`)}
             className="cursor-pointer"
           >
             <TableCell>{feature.name}</TableCell>
