@@ -17,6 +17,8 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const basePath = import.meta.env.VITE_BASE_PATH || "";
+
 const TriggerButton = ({ className, ...rest }: ButtonProps) => {
   return (
     <Button
@@ -112,7 +114,7 @@ const ChatBotContent = () => {
             author: AUTHOR.BOT,
             links: [
               {
-                url: "/releases?releaseId=RELEASE-21",
+                url: basePath + "/releases?releaseId=RELEASE-21",
                 title: "Datahub 2.1",
               },
             ],
