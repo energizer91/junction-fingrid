@@ -34,7 +34,7 @@ export const Releases = () => {
         <Sidebar>
           <ul className="flex flex-col gap-6 mb-8">
             <li>
-              <Link to="/releases">
+              <Link to={`${basePath}/releases`}>
                 <Button
                   variant="light"
                   className={classnames("font-bold text-tremor-brand-primary", {
