@@ -1,0 +1,14 @@
+.language-switcher {
+    & button {
+        @apply border-none;
+        @apply shadow-none;
+        @apply bg-transparent;
+        @apply rounded-tremor-initial;
+        &:focus {
+            @apply outline-none;
+        }
+    }
+    & ul {
+        @apply rounded-tremor-initial;
+    }
+}

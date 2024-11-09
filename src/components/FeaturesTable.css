@@ -1,0 +1,10 @@
+.features-table {
+    & tr {
+        &:hover .react-block {
+            display: flex;
+        }
+    }
+    .react-block {
+        display: none;
+    }
+}
