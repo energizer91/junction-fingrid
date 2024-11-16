@@ -1,0 +1,8 @@
+.priority-select {
+    & button {
+        @apply rounded-tremor-initial;
+    }
+    & ul {
+        @apply rounded-tremor-initial;
+    }
+}

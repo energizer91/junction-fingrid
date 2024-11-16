@@ -10,7 +10,7 @@ interface FeatureRequestProps {
 const FeatureRequest = ({ feature }: FeatureRequestProps) => {
   return (
     <Link
-      href={`/features/${feature.id}`}
+      href={`/features/${feature.name}`}
       className="col-span-1 flex flex-col mb-3"
     >
       <div className="flex justify-between flex-row items-center">

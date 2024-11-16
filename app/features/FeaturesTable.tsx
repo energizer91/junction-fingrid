@@ -24,11 +24,12 @@ export interface FeaturesTableProps {
 
 export const FeaturesTable = ({ features }: FeaturesTableProps) => {
   const router = useRouter();
+
   return (
     <Table className="features-table">
       <TableHead>
         <TableRow>
-          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>ID</TableHeaderCell>
           <TableHeaderCell>Author</TableHeaderCell>
           <TableHeaderCell>Description</TableHeaderCell>
           <TableHeaderCell />
@@ -37,8 +38,8 @@ export const FeaturesTable = ({ features }: FeaturesTableProps) => {
       <TableBody>
         {features.map((feature) => (
           <TableRow
-            key={feature.id}
-            onClick={() => router.push(`/features/${feature.id}`)}
+            key={feature.name}
+            onClick={() => router.push(`/features/${feature.name}`)}
             className="cursor-pointer"
           >
             <TableCell>{feature.name}</TableCell>

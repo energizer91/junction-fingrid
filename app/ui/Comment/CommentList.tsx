@@ -5,7 +5,7 @@ interface CommentListProps {
   comments: CommentType[];
 }
 
-export const CommentList = ({ comments }: CommentListProps) => {
+export const CommentList = ({ comments = [] }: CommentListProps) => {
   if (!comments.length) {
     return null;
   }

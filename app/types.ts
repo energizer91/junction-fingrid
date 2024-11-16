@@ -1,6 +1,7 @@
 export interface User {
   id: string;
   name: string;
+  email: string;
 }
 
 export interface Comment {
@@ -18,6 +19,7 @@ export interface Feature {
   status: string;
   likes: number;
   dislikes: number;
+  priority: number;
   comments: Comment[];
   children: Feature[];
 }

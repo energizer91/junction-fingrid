@@ -11,21 +11,20 @@ import { LinkedFeatures } from "../../ui/LinkedFeatures/LinkedFeatures";
 import { CommentForm } from "../../ui/Comment/CommentForm";
 import { CommentList } from "../../ui/Comment/CommentList";
 
-export default async function Release({
+export default async function ReleasePage({
   params,
 }: {
   params: Promise<Record<string, string>>;
 }) {
-  const { release } = await params;
-  const r = await getRelease(release);
+  const release = await getRelease((await params).release);
 
-  if (!r) notFound();
+  if (!release) notFound();
 
   return (
     <Card className="col-span-9 p-[5rem]">
       <div className="mb-6">
         <div className="flex flex-row mb-6 gap-6">
-          <h1 className="text-2xl font-bold">{r.name}</h1>
+          <h1 className="text-2xl font-bold">{release.name}</h1>
           <div className="flex gap-1">
             <Button
               size="xs"
@@ -50,12 +49,12 @@ export default async function Release({
             </Button>
           </div>
         </div>
-        <BadgeList type={r.type} tags={r.tags} />
+        <BadgeList type={release.type} tags={release.tags} />
       </div>
-      <Text className="font-medium text-md">{r.description}</Text>
+      <Text className="font-medium text-md">{release.description}</Text>
       <Divider />
-      <LinkedFeatures features={r.features} />
-      <CommentList comments={r.comments} />
+      <LinkedFeatures features={release.features} />
+      <CommentList comments={release.comments} />
       <CommentForm />
     </Card>
   );

@@ -1,3 +1,4 @@
+"use client";
 import { Button, Textarea } from "@tremor/react";
 
 export const CommentForm = () => {

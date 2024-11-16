@@ -9,7 +9,7 @@ interface LinkedFeaturesProps {
   features: Feature[];
 }
 
-export const LinkedFeatures = ({ features }: LinkedFeaturesProps) => {
+export const LinkedFeatures = ({ features = [] }: LinkedFeaturesProps) => {
   const [openedFeatures, setOpenedFeatures] = useState(true);
 
   if (!features.length) {

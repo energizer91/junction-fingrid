@@ -2,9 +2,9 @@
 import fingridLogo from "../../../public/fingrid-logo.svg";
 import classnames from "classnames";
 import { UserArea } from "./UserArea";
-import johnDoe from "../../../public/john-doe.png";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { User } from "../../types";
 
 const navItems = [
   { href: "/", title: "Dashboard" },
@@ -13,11 +13,15 @@ const navItems = [
   { href: "/faq", title: "FAQ" },
 ];
 
-export const Header = () => {
+interface HeaderProps {
+  user: User | null;
+}
+
+export const Header = ({ user }: HeaderProps) => {
   const pathname = usePathname();
   return (
     <header className="header flex justify-between items-center mb-10">
-      <Link href={"/public"} className="flex flex-1">
+      <Link href="/" className="flex flex-1">
         <img src={fingridLogo.src} alt="Fingrid logo" />
       </Link>
       <nav className="flex flex-grow justify-center">
@@ -36,7 +40,7 @@ export const Header = () => {
           ))}
         </ul>
       </nav>
-      <UserArea name="Allan Kim" icon={johnDoe.src} />
+      <UserArea user={user} />
     </header>
   );
 };

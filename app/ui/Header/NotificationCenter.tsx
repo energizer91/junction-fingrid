@@ -4,15 +4,10 @@ import { Button, ButtonProps, Card, Divider, Text } from "@tremor/react";
 import { RiNotification2Line, RiSettings4Fill } from "@remixicon/react";
 import { Notification } from "../../types";
 import classnames from "classnames";
-import { mockNotification, mockReadNotification } from "../../mocks";
 import { formattedDate } from "../../utils";
 import { NotificationsModal } from "./NotificationsModal";
 
-const notifications: Notification[] = [
-  mockNotification,
-  mockNotification,
-  mockReadNotification,
-];
+const notifications: Notification[] = [];
 
 export const TriggerButton = ({ className, ...rest }: ButtonProps) => {
   return (

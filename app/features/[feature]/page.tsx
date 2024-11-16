@@ -10,22 +10,24 @@ import { getBadgeColor } from "../../utils";
 import { LinkedFeatures } from "../../ui/LinkedFeatures/LinkedFeatures";
 import { CommentForm } from "../../ui/Comment/CommentForm";
 import { CommentList } from "../../ui/Comment/CommentList";
+import { getComments } from "../../api/comments/actions";
 
 export default async function featurePage({
   params,
 }: {
   params: Promise<Record<string, string>>;
 }) {
-  const { feature } = await params;
-  const f = await getFeature(feature);
+  const feature = await getFeature((await params).feature);
 
-  if (!f) notFound();
+  if (!feature) notFound();
+
+  const comments = await getComments(feature.id);
 
   return (
     <Card className="col-span-9 p-[5rem]">
       <div className="mb-6">
         <div className="flex flex-row mb-6 gap-6">
-          <h1 className="text-2xl font-bold">{f.name}</h1>
+          <h1 className="text-2xl font-bold">{feature.name}</h1>
           <div className="flex gap-1">
             <Button
               size="xs"
@@ -52,15 +54,15 @@ export default async function featurePage({
         </div>
         <Badge
           style={{ boxShadow: "none" }}
-          className={getBadgeColor(f.status)}
+          className={getBadgeColor(feature.status)}
         >
-          {f.status}
+          {feature.status}
         </Badge>
       </div>
-      <Text className="font-medium text-md">{f.description}</Text>
+      <Text className="font-medium text-md">{feature.description}</Text>
       <Divider />
-      <LinkedFeatures features={f.children} />
-      <CommentList comments={f.comments} />
+      <LinkedFeatures features={feature.children} />
+      <CommentList comments={comments} />
       <CommentForm />
     </Card>
   );

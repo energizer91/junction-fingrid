@@ -1,21 +1,32 @@
-import {
-  mockRelease21,
-  mockRelease22x,
-  mockRelease23,
-  mockRelease24,
-} from "../../mocks";
+import { Release } from "../../types";
+import { notFound } from "next/navigation";
 
-const releases = [mockRelease24, mockRelease23, mockRelease22x, mockRelease21];
+export async function getReleases(): Promise<Release[]> {
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVICE_URL}/api/releases`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
 
-export const getReleases = async () => {
-  "use server";
-  return releases;
-};
+  if (!result.ok) return [];
 
-export const getRelease = async (releaseId: string | undefined) => {
-  "use server";
+  return await result.json();
+}
 
-  if (!releaseId) return null;
+export async function getRelease(releaseId: string): Promise<Release> {
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVICE_URL}/api/features/${releaseId}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
 
-  return releases.find((r) => r.id === releaseId);
-};
+  if (!result.ok) return notFound();
+
+  return await result.json();
+}

@@ -9,7 +9,7 @@ interface RequestCardProps {
 
 const RequestCard = ({ feature }: RequestCardProps) => {
   return (
-    <Link className="col-span-1" href={`/features/${feature.id}`}>
+    <Link className="col-span-1" href={`/features/${feature.name}`}>
       <Card className="rounded-tremor-small">
         <div className="flex flex-col mb-3">
           <div className="flex justify-between flex-row items-center">
@@ -43,7 +43,7 @@ export const FeaturedRequests = ({ features }: FeaturedRequestsProps) => {
       <h2 className="text-2xl font-bold mb-6">Following feature requests</h2>
       <div className="grid grid-cols-2 gap-6 w-full">
         {features.map((feature) => (
-          <RequestCard key={feature.id} feature={feature} />
+          <RequestCard key={feature.name} feature={feature} />
         ))}
       </div>
     </>

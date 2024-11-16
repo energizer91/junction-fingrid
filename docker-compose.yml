@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017"
+    volumes:
+      - mongo-data:/data/db
+
+  fingrid-backend:
+    build: ./fingrid-backend
+    container_name: fingrid-backend
+    ports:
+      - "3002"
+    environment:
+      PORT: 3002
+      MONGO_URI: mongodb://mongodb:27017/insightgrid
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - mongodb
+
+  frontend-service:
+    build: ./frontend-service
+    container_name: frontend-service
+    ports:
+      - "3000"
+    environment:
+      SITE_URL: http://api-gateway:8081
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8081:8081"
+    depends_on:
+      - feature-service
+      - user-service
+      - frontend-service
+
+volumes:
+  mongo-data:
+    driver: local
