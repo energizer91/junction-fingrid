@@ -55,7 +55,11 @@ export default async function ReleasePage({
       <Divider />
       <LinkedFeatures features={release.features} />
       <CommentList comments={release.comments} />
-      <CommentForm />
+      <CommentForm
+        entityType="release"
+        entityId={release.id}
+        slug={release.id}
+      />
     </Card>
   );
 }

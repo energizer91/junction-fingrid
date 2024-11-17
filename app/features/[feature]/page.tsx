@@ -21,7 +21,7 @@ export default async function featurePage({
 
   if (!feature) notFound();
 
-  const comments = await getComments(feature.id);
+  const comments = await getComments("feature", feature._id);
 
   return (
     <Card className="col-span-9 p-[5rem]">
@@ -63,7 +63,11 @@ export default async function featurePage({
       <Divider />
       <LinkedFeatures features={feature.children} />
       <CommentList comments={comments} />
-      <CommentForm />
+      <CommentForm
+        entityType="feature"
+        entityId={feature._id}
+        slug={feature.name}
+      />
     </Card>
   );
 }

@@ -15,7 +15,7 @@ export const CommentList = ({ comments = [] }: CommentListProps) => {
       <h3 className="font-bold text-xl mb-8">Comments</h3>
       <div className="flex flex-col gap-8 mb-6">
         {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment key={comment._id} comment={comment} />
         ))}
       </div>
     </>

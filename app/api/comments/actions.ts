@@ -1,8 +1,13 @@
+"use server";
 import { Comment } from "../../types";
+import { cookies } from "next/headers";
 
-export async function getComments(postId: string): Promise<Comment[]> {
+export async function getComments(
+  entityType: string,
+  entityId: string,
+): Promise<Comment[]> {
   const result = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVICE_URL}/api/comments/${postId}`,
+    `${process.env.NEXT_PUBLIC_SERVICE_URL}/api/comments/${entityType}/${entityId}`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -15,17 +20,23 @@ export async function getComments(postId: string): Promise<Comment[]> {
   return await result.json();
 }
 
-export async function addComment(postId: string, text: string) {
+export async function addComment(
+  entityType: string,
+  entityId: string,
+  text: string,
+) {
   if (!text) return { message: "Text can not be empty" };
 
+  const cookieStorage = await cookies();
   try {
     const result = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVICE_URL}/api/comments/${postId}`,
+      `${process.env.NEXT_PUBLIC_SERVICE_URL}/api/comments/${entityType}/${entityId}`,
       {
         method: "POST",
+        body: JSON.stringify({ text }),
         headers: {
-          body: JSON.stringify({ text }),
           "Content-Type": "application/json",
+          Authorization: `Bearer ${cookieStorage.get("access_token")?.value}`,
         },
       },
     );

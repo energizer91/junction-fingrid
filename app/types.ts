@@ -5,7 +5,7 @@ export interface User {
 }
 
 export interface Comment {
-  id: string;
+  _id: string;
   author: User;
   date: number;
   text: string;
